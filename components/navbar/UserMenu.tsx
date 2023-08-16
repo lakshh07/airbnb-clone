@@ -3,10 +3,57 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Avatar } from "../Avatar";
 import { MenuItem } from "./MenuItem";
 import { useRegisterModal } from "@/hooks/useRegisterModal";
+import { useLoginModal } from "@/hooks/useLoginModal";
+import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
-export const UserMenu: React.FC = () => {
+interface UserMenuProps {
+  currentUser?: User | null;
+}
+
+export const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
+  const router = useRouter();
+  const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState<boolean>();
+
+  const menu = [
+    {
+      title: "My trips",
+      url: () => {
+        router.push("/trips");
+      },
+    },
+    {
+      title: "My favorites",
+      url: () => {
+        router.push("/favorites");
+      },
+    },
+    {
+      title: "My reservations",
+      url: () => {
+        router.push("/reservations");
+      },
+    },
+    {
+      title: "My properties",
+      url: () => {
+        router.push("/properties");
+      },
+    },
+    {
+      title: "Airbnb your home",
+      url: () => {
+        router.push("/trips");
+      },
+    },
+    {
+      title: "Logout",
+      url: () => signOut(),
+    },
+  ];
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -37,10 +84,29 @@ export const UserMenu: React.FC = () => {
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem label="Login" onClick={() => {}} />
-              <MenuItem label="Sign Up" onClick={registerModal.onOpen} />
-            </>
+            {currentUser ? (
+              <>
+                {menu?.slice(0, -1).map((list, index) => {
+                  return (
+                    <MenuItem
+                      label={list.title}
+                      onClick={list.url}
+                      key={index}
+                    />
+                  );
+                })}
+                <hr />
+                <MenuItem
+                  label={menu[menu.length - 1].title}
+                  onClick={menu[menu.length - 1].url}
+                />
+              </>
+            ) : (
+              <>
+                <MenuItem label="Login" onClick={loginModal.onOpen} />
+                <MenuItem label="Sign Up" onClick={registerModal.onOpen} />
+              </>
+            )}
           </div>
         </div>
       )}
