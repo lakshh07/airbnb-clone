@@ -112,6 +112,7 @@ export const LoginModal: React.FC = () => {
               hover:underline
             "
           >
+            {" "}
             Create an account
           </span>
         </p>
