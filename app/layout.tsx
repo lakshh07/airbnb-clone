@@ -6,6 +6,7 @@ import { RegisterModal } from "@/components/modals/RegisterModal";
 import { ToasterProvider } from "@/providers/ToasterProvider";
 import { LoginModal } from "@/components/modals/LoginModal";
 import { getCurrentUser } from "@/utils/actions/getCurrentUser";
+import { RentModal } from "@/components/modals/RentModal";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default async function RootLayout({
       <body className={poppins.className}>
         <Navbar currentUser={currentUser} />
         <RegisterModal />
+        <RentModal />
         <LoginModal />
         <ToasterProvider />
 
