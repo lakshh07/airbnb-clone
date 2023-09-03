@@ -37,7 +37,7 @@ export async function POST(request: Request) {
       room_count,
       bathroom_count,
       guest_count,
-      location_value: location_value.label,
+      location_value: location_value.value,
       price: parseInt(price, 10),
       //   user_id: currentUser.id,
       user_id: "43c9d7eb-086d-4fe6-aaa3-5e039e6e7f79",

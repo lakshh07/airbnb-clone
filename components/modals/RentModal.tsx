@@ -99,7 +99,7 @@ export const RentModal: React.FC = () => {
           reset();
           setStep(STEPS.CATEGORY);
           rentModal.onClose();
-        }, 3000);
+        }, 1000);
       })
       .catch(() => {
         toast.error("Something went wrong!");
