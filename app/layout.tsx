@@ -5,7 +5,7 @@ import { Poppins } from "next/font/google";
 import { RegisterModal } from "@/components/modals/RegisterModal";
 import { ToasterProvider } from "@/providers/ToasterProvider";
 import { LoginModal } from "@/components/modals/LoginModal";
-import { getCurrentUser } from "@/utils/actions/getCurrentUser";
+import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { RentModal } from "@/components/modals/RentModal";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
@@ -21,7 +21,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const currentUser = await getCurrentUser();
-
+  console.log(currentUser);
   return (
     <html lang="en">
       <body className={poppins.className}>

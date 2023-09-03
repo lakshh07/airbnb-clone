@@ -11,7 +11,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(request: NextApiRequest) {
-  const currentUser = await prisma.user.findMany();
+  const currentUser = await prisma.listing.findMany();
   // const currentUser = await prisma.user.findUnique({
   //   where: {
   //     email: "lucky@gmail.com",
