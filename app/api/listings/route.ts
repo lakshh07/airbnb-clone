@@ -5,9 +5,9 @@ import { getCurrentUser } from "@/app/actions/getCurrentUser";
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
-  //   if (!currentUser) {
-  //     return NextResponse.error();
-  //   }
+  if (!currentUser) {
+    return NextResponse.error();
+  }
 
   const body = await request.json();
   const {
@@ -39,8 +39,7 @@ export async function POST(request: Request) {
       guest_count,
       location_value: location_value.value,
       price: parseInt(price, 10),
-      //   user_id: currentUser.id,
-      user_id: "43c9d7eb-086d-4fe6-aaa3-5e039e6e7f79",
+      user_id: currentUser.id,
     },
   });
 
