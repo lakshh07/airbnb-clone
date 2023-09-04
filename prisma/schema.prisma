@@ -29,17 +29,17 @@ model Account {
 }
 
 model Listing {
-  id             String    @id @default(uuid()) @db.VarChar(50)
-  title          String    @db.VarChar(200)
-  description    String    @db.LongText
-  image_url      String    @db.VarChar(2048)
-  created_at     DateTime? @default(now()) @db.Timestamp(0)
-  category       String    @db.VarChar(100)
+  id             String   @id @default(uuid()) @db.VarChar(50)
+  title          String   @db.VarChar(200)
+  description    String   @db.LongText
+  image_url      String   @db.VarChar(2048)
+  created_at     DateTime @default(now()) @db.Timestamp(0)
+  category       String   @db.VarChar(100)
   room_count     Int
   bathroom_count Int
   guest_count    Int
-  location_value String    @db.VarChar(500)
-  user_id        String    @db.VarChar(50)
+  location_value String   @db.VarChar(500)
+  user_id        String   @db.VarChar(50)
   price          Int
 
   // @@index([user_id], map: "user_id")
@@ -48,13 +48,13 @@ model Listing {
 }
 
 model Reservation {
-  id          String    @id @default(uuid()) @db.VarChar(50)
-  user_id     String    @db.VarChar(50)
-  listing_id  String    @db.VarChar(50)
-  start_date  DateTime  @db.Timestamp(0)
-  end_date    DateTime  @db.Timestamp(0)
+  id          String   @id @default(uuid()) @db.VarChar(50)
+  user_id     String   @db.VarChar(50)
+  listing_id  String   @db.VarChar(50)
+  start_date  DateTime @db.Timestamp(0)
+  end_date    DateTime @db.Timestamp(0)
   total_price Int
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  created_at  DateTime @default(now()) @db.Timestamp(0)
 
   // @@index([listing_id], map: "listing_id")
   // @@index([user_id], map: "user_id")
@@ -69,8 +69,8 @@ model User {
   email_verified  DateTime? @db.DateTime(0)
   image           String?   @db.VarChar(2048)
   hashed_password String?   @db.VarChar(500)
-  created_at      DateTime? @default(now()) @db.Timestamp(0)
-  updated_at      DateTime? @default(now()) @db.Timestamp(0)
+  created_at      DateTime  @default(now()) @db.Timestamp(0)
+  updated_at      DateTime  @default(now()) @db.Timestamp(0)
   favourite_ids   String?   @db.VarChar(100)
 
   account      Account[]
