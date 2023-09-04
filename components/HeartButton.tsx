@@ -1,11 +1,8 @@
 "use client";
 
+import useFavorite from "@/hooks/useFavorite";
 import { SafeUser } from "@/utils/types";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-
-// import useFavorite from "@/app/hooks/useFavorite";
-
-// import ClientOnly from "./ClientOnly";
 
 interface HeartButtonProps {
   listingId: string;
@@ -16,15 +13,14 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   listingId,
   currentUser,
 }) => {
-  const hasFavorited = false;
-  //   const { hasFavorited, toggleFavorite } = useFavorite({
-  //     listingId,
-  //     currentUser,
-  //   });
+  const { hasFavorited, toggleFavorite } = useFavorite({
+    listingId,
+    currentUser,
+  });
 
   return (
     <div
-      //   onClick={toggleFavorite}
+      onClick={toggleFavorite}
       className="
         relative
         hover:opacity-80

@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
 import { Button } from "../Button";
-import HeartButton from "../HearButton";
+import HeartButton from "../HeartButton";
 
 interface ListingCardProps {
   data: Listing;
