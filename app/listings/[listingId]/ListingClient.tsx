@@ -6,8 +6,7 @@ import ListingInfo from "@/components/listings/ListingInfo";
 import { ListingReservation } from "@/components/listings/ListingReservation";
 import { categories } from "@/components/navbar/Categories";
 import { useLoginModal } from "@/hooks/useLoginModal";
-import { SafeListing, SafeUser } from "@/utils/types";
-import { Reservation } from "@prisma/client";
+import { SafeListing, SafeReservation, SafeUser } from "@/utils/types";
 import axios from "axios";
 import { Range } from "react-date-range";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
@@ -16,7 +15,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
 interface ListingClientProps {
-  reservations?: Reservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -73,7 +72,6 @@ export const ListingClient: React.FC<ListingClientProps> = ({
         start_date: dateRange.startDate,
         end_date: dateRange.endDate,
         listing_id: listing.id,
-        user_id: currentUser.id,
       })
       .then(() => {
         toast.success("Listing Reserved!");
