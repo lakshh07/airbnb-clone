@@ -7,6 +7,7 @@ import { ToasterProvider } from "@/providers/ToasterProvider";
 import { LoginModal } from "@/components/modals/LoginModal";
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
 import { RentModal } from "@/components/modals/RentModal";
+import { SearchModal } from "@/components/modals/SearchModal";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default async function RootLayout({
         <Navbar currentUser={currentUser} />
         <RegisterModal />
         <RentModal />
+        <SearchModal />
         <LoginModal />
         <ToasterProvider />
         <div className="pb-20 pt-28">{children}</div>
