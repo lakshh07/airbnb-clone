@@ -22,3 +22,13 @@ body,
   font-size: 16px !important;
   width: 100% !important;
 }
+.aws-btn {
+  --slider-height-percentage: 55% !important;
+  --slider-transition-duration: 466ms !important;
+  --organic-arrow-thickness: 4px !important;
+  --organic-arrow-border-radius: 5px !important;
+  --organic-arrow-height: 22px !important;
+  --organic-arrow-color: #ffffff !important;
+  --control-button-width: 8% !important;
+  --control-button-height: 80% !important;
+}

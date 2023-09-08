@@ -44,6 +44,10 @@ export const ListingClient: React.FC<ListingClientProps> = ({
     return categories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
+  const imgUrlArray = useMemo(() => {
+    return listing.image_url.split(",");
+  }, [listing.image_url]);
+
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
@@ -112,7 +116,7 @@ export const ListingClient: React.FC<ListingClientProps> = ({
         <div className="flex flex-col gap-6">
           <ListingHead
             title={listing.title}
-            imageSrc={listing.image_url}
+            imageSrc={imgUrlArray}
             locationValue={listing.location_value}
             id={listing.id}
             currentUser={currentUser}

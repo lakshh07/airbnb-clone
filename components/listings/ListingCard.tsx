@@ -65,6 +65,10 @@ export const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
+  const imgUrlArray = useMemo(() => {
+    return data.image_url.split(",");
+  }, [data.image_url]);
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -89,7 +93,7 @@ export const ListingCard: React.FC<ListingCardProps> = ({
                 group-hover:scale-110 
                 transition
             "
-            src={data.image_url}
+            src={imgUrlArray[0]}
             alt="Listing"
           />
           <div
