@@ -46,8 +46,8 @@ export const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       },
     },
     {
-      title: "Airbnb your home",
-      url: () => rentModal.onOpen(),
+      title: "My account",
+      url: () => router.push("/account"),
     },
     {
       title: "Logout",
