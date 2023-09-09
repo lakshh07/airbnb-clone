@@ -1,18 +1,20 @@
 import { SafeUser } from "@/utils/types";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Input } from "./Input";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { Button } from "../Button";
 
 interface UserInfoEditProps {
   title: string;
-  subtitle: string | null | undefined;
+  subtitle: string;
   label: string;
   secondaryLabel: string;
   currentUser?: SafeUser | null;
   isLoading: boolean;
+  disabled?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  onSubmit: () => void;
 }
 
 export const UserInfoEdit: React.FC<UserInfoEditProps> = ({
@@ -20,12 +22,21 @@ export const UserInfoEdit: React.FC<UserInfoEditProps> = ({
   subtitle,
   label,
   secondaryLabel,
-  currentUser,
   isLoading,
+  disabled,
   register,
   errors,
+  onSubmit,
 }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleSubmit = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+
+    onSubmit();
+  }, [onSubmit, disabled]);
 
   return (
     <>
@@ -60,7 +71,7 @@ export const UserInfoEdit: React.FC<UserInfoEditProps> = ({
           />
 
           <div style={{ width: "80px", marginTop: "1em" }}>
-            <Button label="Save" onClick={() => {}} />
+            <Button label="Save" onClick={handleSubmit} />
           </div>
         </div>
       )}

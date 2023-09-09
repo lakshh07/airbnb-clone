@@ -64,6 +64,7 @@ export const Input: React.FC<InputProps> = ({
           -translate-y-3
           top-5
           z-10
+          capitalize
           origin-[0]
           ${formatPrice ? "left-9" : "left-4"}
           peer-placeholder-shown:scale-80
